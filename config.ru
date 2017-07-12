@@ -11,11 +11,11 @@ use Rack::TryStatic,
 
 run lambda { |env|
   [
-    404,
+    200,
     {
       'Content-Type' => 'text/html',
       'Cache-Policy' => 'public, max-age=86400'
     },
-    File.open('_site/404.html', File::RDONLY)
+    [File.open('_site/404.html', File::RDONLY)]
   ]
 }
