@@ -9,13 +9,4 @@ use Rack::TryStatic,
   :urls => %w[/],
   :try => ['.html', 'index.html', '/index.html']
 
-run lambda { |env|
-  [
-    200,
-    {
-      'Content-Type' => 'text/html',
-      'Cache-Policy' => 'public, max-age=86400'
-    },
-    [File.open('_site/404.html', File::RDONLY)]
-  ]
-}
+run Rack::NotFound.new('_site/404.html')
