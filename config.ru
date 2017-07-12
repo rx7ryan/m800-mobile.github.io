@@ -1,4 +1,5 @@
 require 'rack'
+require 'rack/contrib'
 require 'rack/contrib/try_static'
 
 use Rack::Deflater
@@ -8,4 +9,13 @@ use Rack::TryStatic,
   :urls => %w[/],
   :try => ['.html', 'index.html', '/index.html']
 
-run Rack::NotFound.new('_site/404.html')
+run lambda { |env|
+  [
+    404,
+    {
+      'Content-Type' => 'text/html',
+      'Cache-Policy' => 'public, max-age=86400'
+    },
+    File.open('_site/404.html', File::RDONLY)
+  ]
+}
