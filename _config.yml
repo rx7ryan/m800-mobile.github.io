@@ -37,10 +37,8 @@ exclude:
   - config.ru
   - Rakefile
   - Procfile
-#   - Gemfile
-#   - Gemfile.lock
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
 #   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
